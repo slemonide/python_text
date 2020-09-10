@@ -1,0 +1,10 @@
+name: notebook
+channels:
+  - eoas_ubc
+  - conda-forge
+dependencies:
+  - python=3.7
+  - base-notebook=2020.09.05
+  - scipy
+  # NOTE: pip required for running tests in this repo
+  - pip=20

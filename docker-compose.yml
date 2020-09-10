@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  jupyterhub:
+    build: hub_image
+    image: phaustin/jupyterhub:textbook
+    container_name: jupyterhub
+    depends_on: [notebook]
+    ports:
+      - "8500:8000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - textbook_network
+
+  notebook:
+    build: notebook_image
+    image: phaustin/notebook:textbook
+    container_name: notebook
+    # command: jupyterhub-singleuser
+
+# force the network name to be "jupyterhub"
+# this needs to be matched in jupyterhub_config.py by:
+# c.DockerSpawner.network_name = 'jupyterhub'
+networks:
+    textbook_network:
+      driver: bridge
+      name: textbook_network
+
+volumes:
+  jupyterhub_data:
+
