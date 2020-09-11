@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  content:
+    container_name: book_content
+    build:
+      context: .
+      dockerfile: content.dockerfile
+    image: phaustin/problem_solving_content:sep10
+    volumes:
+      - type: volume
+        source: problem-solving-notebooks
+        target: /srv/problem_solving_notebooks
+  
   jupyterhub:
     build: hub_image
     image: phaustin/jupyterhub:textbook
@@ -17,6 +28,10 @@ services:
     build: notebook_image
     image: phaustin/notebook:textbook
     container_name: notebook
+    depends_on: [content]
+    volumes:
+      - problem-solving-notebooks:/srv/problem_solving_notebooks
+
     # command: jupyterhub-singleuser
 
 # force the network name to be "jupyterhub"
@@ -28,5 +43,7 @@ networks:
       name: textbook_network
 
 volumes:
-  jupyterhub_data:
+  problem-solving-notebooks:
+    name: problem-solving-notebooks
+
 

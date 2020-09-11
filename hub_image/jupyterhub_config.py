@@ -23,3 +23,12 @@ c.DockerSpawner.remove = True
 # explicitly set cmd, so we start jupyterhub-singleuser rather than jupyter notebook
 # This is useful when running docker images that aren't built specifically for JupyterHub
 c.DockerSpawner.cmd = 'jupyterhub-singleuser'
+#c.DockerSpawner.notebook_dir = '/'
+notebook_dir = '/home/jovyan/work'
+c.DockerSpawner.notebook_dir = notebook_dir
+# https://jupyterhub-dockerspawner.readthedocs.io/en/latest/api/index.html
+#c.DockerSpawner.default_url='/tree/home/{username}'
+c.DockerSpawner.volumes = {'/Users/phil/repos/python_text/github_repo':
+                           {'bind':'/srv/notebook_repo','mode':'ro'},
+                           '/Users/phil/repos/python_text/home_dirs/jupyterhub-user-{username}':
+                           notebook_dir}
