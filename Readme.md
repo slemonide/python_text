@@ -3,7 +3,7 @@
 This is a sample jupyterhub setup for a jupyterbook.  Basic approach:
 
 1) bind mount two directories -- a github repository for the notebooks (read-only) and
-   a home_dirs repository for persisting user notebooks pawned by docker spawner.
+   a home_dirs repository for persisting user notebooks spawned by docker spawner.
 
 2) To try this out on localhost:
 
