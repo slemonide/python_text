@@ -28,7 +28,7 @@ notebook_dir = '/home/jovyan/work'
 c.DockerSpawner.notebook_dir = notebook_dir
 # https://jupyterhub-dockerspawner.readthedocs.io/en/latest/api/index.html
 #c.DockerSpawner.default_url='/tree/home/{username}'
-c.DockerSpawner.volumes = {'/Users/phil/repos/python_text/github_repo':
+c.DockerSpawner.volumes = {'/Users/phil/repos/python_text/git_repo':
                            {'bind':'/srv/notebook_repo','mode':'ro'},
                            '/Users/phil/repos/python_text/home_dirs/jupyterhub-user-{username}':
                            notebook_dir}
